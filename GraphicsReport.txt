@@ -1,0 +1,81 @@
+﻿A Night At the Park
+
+
+Created by Michael Hwang
+
+
+The Game
+The goal of the game is to collect the three treasure chests spread out across the park before the time runs out. There are some hazards (river and fire) in the map, which will cause you to lose if you touch them. The game is set at night in a closed park.
+
+
+The Controls & UI
+The mouse is used to look in all directions, and to click on treasure chests when they have been located. The WASD keys are used to move forwards/backwards and sideways. The UI displays a timer, a counter for the amount of treasure chests found and the objective of the game.
+
+
+The Objects & Entities
+The character is a capsule with a camera attached. The objects except from the treasure chests are from the Park asset package, downloaded from the Asset Store. The treasure chests are from the Axeyworks low poly asset package. The fire was created using a particle system.
+
+
+The Camera Motion
+The camera is attached to the character, in a first person view. The camera is controlled by the mouse and travels with the character. The camera rotation is limited vertically both up and down to 70 degrees.
+
+
+The Shaders
+The water shader uses a flow map to make the main texture to have a scrolling effect. The vertex shader takes in appdata structure data and converts them into v2f. These are then processed in the fragment shader, where flow vector from the flowmap is used to offset the current pixel. The offset is reset at a set time, which is controlled by the _Speed variable. The fragment shader creates two layers, one of which is offset the other by half the set time. The two layers are then interpolated halfway through the cycle, and not interpolated at the beginning and end of the cycle. The fog is then added at the end.
+
+
+The poster shader creates low resolution effect, to match the rest of the environment. The vertex shader takes in appdata structure data and converts them into v2f. Inside the fragment shader, each pixel is assigned a new uv value that corresponds to the uv with the color the larger pixel holds. This is done by multiplying each coordinate value by the number of larger pixels, casting to an int (floor function), then dividing by the number of larger pixels again. With this algorithm, the more larger pixels, the smaller they are since distance between two integers when multiplying decreases (.05 increment for 20 vs .01 increment for 100). The fog is then added at the end.
+
+
+The Evaluation Methods
+Two evaluation methods were used: a survey completed after playing the game (querying) and think aloud was recorded during gameplay (observational).
+
+
+Survey - 5 Participants
+Demographics - all girls, all university students, one computer science student, four arts students
+The survey consisted of 6 questions: 4 asked to rate aspects of the game on a 1-5 scale and 2 were open ended questions. The participants were asked to complete the survey after playing the game. The survey was created using Google Forms, and the survey results were accessed using Google’s platform.
+100% rated the clarity of the objective as 5/5
+60% rated the easiness of the game as ⅗
+60% said to add something to help see where to click in response to “What should be improved”
+
+
+Think Aloud - Same Participants
+Had the participants say their thoughts as they played the game, recorded them using phone’s sound memos, some phrases shown below
+“I think I should cross the bridge not the river?”
+“How do I know where to click”
+“There’s not enough time”
+“The character moves too slowly”
+“Is there a health bar”
+“The mouse is hard to use”
+
+
+The Changes Made
+Added a mouse pointer to aid in clicking.
+Added difficulty options
+Lowered mouse sensitivity
+
+
+The Code from Other Sources
+The MouseInteraction script is based on the following video:
+https://www.youtube.com/watch?v=36ruPSD7FJk 
+The CameraControl script is based on the following video:
+https://www.youtube.com/watch?v=blO039OzUZc 
+
+
+The water shader is based on the following blog post: http://graphicsrunner.blogspot.com.au/2010/08/water-using-flow-maps.html
+
+
+Park Assets
+https://www.assetstore.unity3d.com/en/#!/content/61922 
+
+
+AxeyWorks
+https://www.assetstore.unity3d.com/en/#!/content/58821 
+
+
+Skybox
+https://www.assetstore.unity3d.com/en/#!/content/32236 
+
+
+Pixel Font
+https://www.assetstore.unity3d.com/en/#!/content/64734
